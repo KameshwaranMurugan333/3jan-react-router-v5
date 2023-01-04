@@ -5,6 +5,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { PrivateRoute } from "./routers/privateRoute";
 import { AllRoutes } from "./routers/routes";
 import { Dashboard } from "./screens/dashboard";
 import { Home } from "./screens/home";
@@ -26,24 +27,24 @@ function App() {
         </Route>
 
         {/* For Profile Page */}
-        <Route exact path={AllRoutes.profile}>
+        <PrivateRoute exact path={AllRoutes.profile}>
           <Profile />
-        </Route>
+        </PrivateRoute>
 
         {/* For Home Page */}
-        <Route path={AllRoutes.home}>
+        <PrivateRoute path={AllRoutes.home}>
           <Home />
-        </Route>
+        </PrivateRoute>
 
         {/* For Dashboard Page */}
-        <Route path={AllRoutes.dashboard}>
+        <PrivateRoute path={AllRoutes.dashboard}>
           <Dashboard />
-        </Route>
+        </PrivateRoute>
 
         {/* For View Profile */}
-        <Route exact path={AllRoutes.viewProfile}>
+        <PrivateRoute exact path={AllRoutes.viewProfile}>
           <ViewProfile />
-        </Route>
+        </PrivateRoute>
 
         {/* Redirection dashboard_old to new dashboard */}
         <Redirect from="/dashboard_v2" to={AllRoutes.dashboard} />
