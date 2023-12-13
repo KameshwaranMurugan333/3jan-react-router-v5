@@ -6,41 +6,46 @@ export const Login = (props) => {
 
     const history = useHistory();
 
-    const logIn = () => {
-        localStorage.setItem("auth_token", "token");
-        // navigateToProfile();
-    }
+    const navigateToHome = () => {
+        // Without state
+        history.push(AllRoutes.home);
 
-    const navigateToProfile = () => {
-        history.push(AllRoutes.profile)
-    }
-
-    const navigateToProfileWithState = () => {
+        // With State, but these states will cleared when the session closed
         history.push({
-            pathname: AllRoutes.profile,
-            state: {
-                name: "Kamesh",
-                age: "26",
-                role: "Trainer"
-            }
+            pathname: AllRoutes.home,
+            state: { name: "Jay", role: "Student" }
         })
+    }
+
+    // 1. Local Storage (Client/Browser)
+    // 2. Session Storage (Client/Browser)
+    // 3. Cookies (Server)
+
+    const login = () => {
+        localStorage.setItem("auth_token", "my auth token");
     }
 
     React.useEffect(() => {
         if (localStorage.getItem("auth_token")) {
-            navigateToProfile();
+            history.push(AllRoutes.profile);
         }
-    }, []);
+    }, [])
 
     return <div>
         <h1>Login</h1>
-        <Link to={AllRoutes.home + "?name=kamesh&age=26"} >Go to Home Page</Link><br />
-        <Link to={AllRoutes.dashboard} >Go to Dashboard</Link><br />
-        <Link to={"/profile/203/222"} >Go to View Profile</Link><br />
-        <Link to={"/profile/300/403"} >Go to View Profile</Link><br />
+        <Link to={AllRoutes.home} >Go to Home Page</Link><br />
 
-        <button onClick={navigateToProfile} > Go to Profile </button>
-        <button onClick={navigateToProfileWithState} > Go to Profile with state</button>
-        <button onClick={logIn}>Login</button>
+
+        <button onClick={navigateToHome} > Go to Home </button>
+
+
+
+        <div>
+            <Link to={AllRoutes.profile}>Profile</Link>
+        </div>
+
+        <div>
+            <button onClick={login} >Login</button>
+        </div>
     </div>
 }

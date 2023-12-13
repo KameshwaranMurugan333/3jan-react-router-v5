@@ -22,8 +22,18 @@ function App() {
         <Route exact path={"/"} component={Login} />
 
         {/* For Login Page */}
-        <Route path={AllRoutes.login} >
+        <Route exact path={AllRoutes.login} >
             <Login />
+        </Route>
+        
+        {/* For Home Page */}
+        <Route exact path={AllRoutes.home}>
+          <Home />
+        </Route>
+
+        {/* For View Profile */}
+        <Route exact path={AllRoutes.viewProfile}>
+          <ViewProfile />
         </Route>
 
         {/* For Profile Page */}
@@ -31,20 +41,12 @@ function App() {
           <Profile />
         </PrivateRoute>
 
-        {/* For Home Page */}
-        <PrivateRoute path={AllRoutes.home}>
-          <Home />
-        </PrivateRoute>
 
         {/* For Dashboard Page */}
         <PrivateRoute path={AllRoutes.dashboard}>
           <Dashboard />
         </PrivateRoute>
 
-        {/* For View Profile */}
-        <PrivateRoute exact path={AllRoutes.viewProfile}>
-          <ViewProfile />
-        </PrivateRoute>
 
         {/* Redirection dashboard_old to new dashboard */}
         <Redirect from="/dashboard_v2" to={AllRoutes.dashboard} />

@@ -3,5 +3,6 @@ export const AllRoutes = {
     home: "/home",
     profile: "/profile",
     dashboard: "/dashboard",
-    viewProfile: "/profile/:id/:user_id"
+    viewProfile: "/profile/:id/:user_id",
+    presentation: "/presentation/d/:id/:action"
 }
